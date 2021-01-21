@@ -20,4 +20,25 @@ $(function() {
             }
         );
     });
+
+    $("#change-devoured").on("click", function(event) {
+    const id = $(this).data("burger_name");
+    const newDevoured = $(this).data("newdevoured");
+
+    const newDevouredBurger = {
+      devoured: true
+    };
+
+    // Send the PUT request.
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: newDevouredBurger
+    }).then(
+      function() {
+        console.log("changed devoured to", newDevoured);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
 })
