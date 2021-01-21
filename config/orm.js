@@ -1,8 +1,18 @@
 const connection = require("./connection.js");
 
-var orm = {
+function printQuestionMarks(num) {
+  const arr = [];
+
+  for (let i = 0; i < num; i++) {
+    arr.push("?");
+  }
+
+  return arr.toString();
+}
+
+const orm = {
     selectAll: function (tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
+        const queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function(err, result) {
             if (err) {
             throw err;
