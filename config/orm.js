@@ -10,9 +10,16 @@ var orm = {
         cb(result);
         });
     },
-    insertOne: function () {
-        const queryString = "";
-        connection.query(queryString, [whatToSelect, tableInput], function(err, result) {
+    insertOne: function (tableInput, colName, vals, cb) {
+        const queryString = "INSERT INTO " + tableInput;
+        queryString += " (";
+        queryString += cols.toString();
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
+
+        connection.query(queryString, [tableInput, colName], function(err, result) {
             if (err) throw err;
             console.log(result);
         });
