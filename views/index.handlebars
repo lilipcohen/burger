@@ -6,11 +6,10 @@
 
 <ul>
     {{#each burgers}}
-    <li>
-        <p>{{burger_name}}</p> <button id="change-devoured" type="submit">Devour it!</button>
-    </li>
     {{#unless devoured}}
-    {{> burgers/burger-block devoured=true}}
+    <li>
+        <p>{{burger_name}}</p> <button id="change-devoured" data-id="{{id}}" type="submit">Devour it!</button>
+    </li>
     {{/unless}}
     {{/each}}
 </ul>
@@ -19,11 +18,10 @@
 
 <ul>
     {{#each burgers}}
+    {{#if devoured}}
     <li>
         <p>{{burger_name}}</p>
     </li>
-    {{#if devoured}}
-    {{> burgers/burger-block devoured=false}}
     {{/if}}
     {{/each}}
 </ul>
